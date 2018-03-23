@@ -4,6 +4,8 @@ Form Widget classes specific to the Django admin site.
 from __future__ import absolute_import
 from itertools import chain
 from django import forms
+from django.db.utils import DJANGO_VERSION_PICKLE_KEY
+
 try:
     from django.forms.widgets import ChoiceWidget as RadioChoiceInput
 except:
@@ -129,10 +131,12 @@ class AdminCheckboxSelect(forms.CheckboxSelectMultiple):
         if value is None:
             value = []
         has_id = attrs and 'id' in attrs
-        if DJANGO_11:
-            final_attrs = self.build_attrs(attrs, extra_attrs={'name': name})
-        else:
-            final_attrs = self.build_attrs(attrs, name=name)
+
+        # if DJANGO_11:
+        #     final_attrs = self.build_attrs(attrs, extra_attrs={'name': name})
+        # else:
+        #     final_attrs = self.build_attrs(attrs, name=name)
+        final_attrs = self.build_attrs(attrs, extra_attrs={'name': name})
         output = []
         # Normalize to strings
         str_values = set([force_text(v) for v in value])
