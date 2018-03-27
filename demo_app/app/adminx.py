@@ -13,16 +13,34 @@ class MainDashboard(object):
         [
             {"type": "html", "title": "Test Widget",
              "content": "<h3> Welcome to Xadmin! </h3><p>Join Online Group: <br/>QQ Qun : 282936295</p>"},
-            {"type": "chart", "model": "app.accessrecord", "chart": "user_count",
-             "params": {"_p_date__gte": "2013-01-08", "p": 1, "_p_date__lt": "2013-01-29"}},
-            {"type": "list", "model": "app.host", "params": {"o": "-guarantee_date"}},
+            # {"type": "chart", "model": "app.accessrecord", "chart": "user_count",
+            #  "params": {"_p_date__gte": "2013-01-08", "p": 1, "_p_date__lt": "2013-01-29"}},
+            # {"type": "list", "model": "app.host", "params": {"o": "-guarantee_date"}},
         ],
         [
-            {"type": "qbutton", "title": "Quick Start",
-             "btns": [{"model": Host}, {"model": IDC}, {"title": "Google", "url": "http://www.google.com"}]},
-            {"type": "addform", "model": MaintainLog},
+            {
+                "type": "qbutton", "title": "Quick Start",
+                "btns": [
+                    {"model": Host},
+                    {"model": IDC},
+                    {"title": "Google", "url": "http://www.google.com"}]
+             },
+            {
+                "type": "addform", "model": MaintainLog
+            },
         ]
     ]
+    # widgets = [
+    #     [
+    #         {"type": "html", "title": "Test Widget",
+    #          "content": "<h3> Welcome to Xadmin! </h3><p>Join Online Group: <br/>QQ Qun : 282936295</p>"},
+    #     ],
+    #     [
+    #         {
+    #             "type": "list", "model": "app.host", "params": {"o": "-guarantee_date"}
+    #         }
+    #     ],
+    # ]
 
 
 @xadmin.sites.register(views.BaseAdminView)
@@ -71,7 +89,6 @@ class IDCAdmin(object):
 
 @xadmin.sites.register(Host)
 class HostAdmin(object):
-
     def open_web(self, instance):
         return """<a href="http://%s" target="_blank">Open</a>""" % instance.ip
 
@@ -202,7 +219,6 @@ class MaintainLogAdmin(object):
 
 @xadmin.sites.register(AccessRecord)
 class AccessRecordAdmin(object):
-
     def avg_count(self, instance):
         return int(instance.view_count / instance.user_count)
 
@@ -226,8 +242,8 @@ class AccessRecordAdmin(object):
                       "option": {
                           "series": {"bars": {"align": "center", "barWidth": 0.8, 'show': True}},
                           "xaxis": {"aggregate": "sum", "mode": "categories"},
-        },
-        },
+                      },
+                      },
     }
 
     def _chart_month(self, obj):

@@ -4,8 +4,6 @@ Form Widget classes specific to the Django admin site.
 from __future__ import absolute_import
 from itertools import chain
 from django import forms
-from django.db.utils import DJANGO_VERSION_PICKLE_KEY
-
 try:
     from django.forms.widgets import ChoiceWidget as RadioChoiceInput
 except:

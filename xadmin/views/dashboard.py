@@ -441,8 +441,7 @@ class ListWidget(ModelBaseWidget, PartialBaseWidget):
         if len(base_fields) > 5:
             base_fields = base_fields[0:5]
 
-        context['result_headers'] = [c for c in list_view.result_headers(
-        ).cells if c.field_name in base_fields]
+        context['result_headers'] = [c for c in list_view.result_headers().cells if c.field_name in base_fields]
         context['results'] = [[o for i, o in
                                enumerate(filter(lambda c:c.field_name in base_fields, r.cells))]
                               for r in list_view.results()]
@@ -536,7 +535,8 @@ class Dashboard(CommAdminView):
 
         UserSettings(
             user=self.user, key="dashboard:%s:pos" % self.get_page_id(),
-            value='|'.join([','.join([str(w.id) for w in col]) for col in portal])).save()
+            value='|'.join([','.join([str(w.id) for w in col]) for col in portal])
+        ).save()
 
         return portal
 
