@@ -68,6 +68,12 @@ Install from github source for Django 2.0:
 
     pip install git+git://github.com/sshwsfc/xadmin.git@django2
 
+    or
+
+    git clone -b django2 https://github.com/aduan/xadmin.git
+    cd path_to_xadmin
+    python setup.py install
+
 Install Requires 
 ----------------
 
